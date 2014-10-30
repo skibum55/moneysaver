@@ -1,0 +1,60 @@
+{
+  "name": "moneysaver",
+  "version": "0.1.0",
+"description":"A simple cron app to shutdown AWS Instances.",
+  "author": {
+    "name": "Sean Keery",
+    "email": "skeery+oss@pivotal.io",
+    "url": "https://github.com/skibum55"
+  },
+  "homepage": "https://github.com/skibum55/moneysaver",
+  "bugs": {
+    "url": "https://github.com/skibum55/moneysaver/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://skibum55.mit-license.org"
+    }
+  ],
+  "maintainers": [],
+  "contributors": [{
+    "name": "Daniel Lamb",
+    "email": "dlamb.open.source@gmail.com",
+    "url": "https://github.com/daniellmb"
+  }],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/skibum55/moneysaver.git"
+  },
+  "main": "moneysaver.js",
+  "scripts": {
+    "test": "gulp"
+  },
+  "keywords": [
+    "micro",
+    "framework",
+    "library"
+  ],
+  "dependencies": {
+    "cron": "*",
+    "time": "*",
+    "express": "*",
+    "aws-sdk": "*"
+  },
+  "devDependencies": {
+    "gulp": "*",
+    "gulp-jshint": "*",
+    "gulp-complexity": "*",
+    "gulp-rename": "*",
+    "gulp-replace": "*",
+    "gulp-uglify": "*",
+    "gulp-karma": "*",
+    "karma-jasmine": "*",
+    "karma-coverage": "*",
+    "karma-phantomjs-launcher": "*"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  }
+}

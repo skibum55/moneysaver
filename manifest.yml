@@ -1,0 +1,9 @@
+---
+#this app shut's down ec2 instances so Joe does not get mad at me
+applications:
+- name: moneysaver
+  memory: 32M
+env:
+  AWS_ACCESS_KEY_ID: AKIAIM42QR4B672YQPMQ
+  AWS_SECRET_ACCESS_KEY: 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
+
