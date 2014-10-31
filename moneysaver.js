@@ -5,10 +5,14 @@
  */
 
 // This function handles arrays and objects
-function eachInstanceStatus(obj) {
-  for (i in obj.InstanceStatuses) {
-      console.log(obj.InstanceStatuses[i].InstanceId + ' status is ' + obj.InstanceStatuses[i].InstanceState['Code']);
+function eachIterator(obj,parent,child) {
+  var keys = new Array();
+  for (i in obj[parent]) {
+    key = obj[parent][i][child];
+    //console.log(key);
+    keys.push(key);
   }
+  console.log(keys);
 }
 
 // thanks to http://runnable.com/Um3nhT9LevdQAAC9/stop-an-instance-for-node-js-aws-and-ec2
@@ -31,14 +35,34 @@ console.log(ec2);
 
 ec2.describeRegions({}, function(err, data) {
   if (err) console.log(err, err.stack); // an error occurred
-  else console.log(data); // successful response returns (Array<map>)
+  else console.log(eachIterator(data,"Regions","RegionName")); // successful response returns (Array<map>)
 });
 
-ec2.describeInstanceStatus({}, function(err, data) {
+var statusParams = {
+  Filters: [
+    {
+      Name: 'instance-state-name',
+      Values: [
+        //'running'
+        'terminated'
+      ]
+    }
+  ],
+  IncludeAllInstances: true
+};
+
+ec2.describeInstanceStatus(statusParams, function(err, data) {
   if (err) console.log(err, err.stack); // an error occurred
-  else console.log(eachInstanceStatus(data));
+  else console.log(eachIterator(data,"InstanceStatuses","InstanceId"));
 });
 
-// ec2.stopInstances({"InstanceIds":["i-dd913237"]}, function(err) {
-//   console.log("Stopping instance", err ? "failure" : "success");
+// var stopParams = {
+//   InstanceIds: [
+//     "i-dd913237",  // these are not valid, just for testing
+//     "i-d70ede3q"
+//   ]
+// };
+// ec2.stopInstances(stopParams, function(err, data) {
+//   if (err) console.log(err, err.stack); // an error occurred
+//   else     console.log(data);           // successful response
 // });
